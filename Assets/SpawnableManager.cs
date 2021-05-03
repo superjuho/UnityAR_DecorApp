@@ -22,30 +22,34 @@ public class SpawnableManager : MonoBehaviour
     Button colorButton;
     Button menuButton;
     Button deleteButton;
+    public Button ExitButton;
+
+    public Sprite EditImage;
+    public Sprite DoneImage;
 
     //Scroll menu chair item buttons.
-    Button ChairItemOne;
-    Button ChairItemTwo;
-    Button ChairItemThree;
-    Button ChairItemFour;
-    Button ChairItemFive;
-    Button ChairItemSix;
+    public Button ChairItemOne;
+    public Button ChairItemTwo;
+    public Button ChairItemThree;
+    public Button ChairItemFour;
+    public Button ChairItemFive;
+    public Button ChairItemSix;
 
     //Scroll menu couch item buttons.
-    Button CouchItemOne;
-    Button CouchItemTwo;
-    Button CouchItemThree;
-    Button CouchItemFour;
-    Button CouchItemFive;
-    Button CouchItemSix;
+    public Button CouchItemOne;
+    public Button CouchItemTwo;
+    public Button CouchItemThree;
+    public Button CouchItemFour;
+    public Button CouchItemFive;
+    public Button CouchItemSix;
 
     //Scroll menu table item buttons.
-    Button TableItemOne;
-    Button TableItemTwo;
-    Button TableItemThree;
-    Button TableItemFour;
-    Button TableItemFive;
-    Button TableItemSix;
+    public Button TableItemOne;
+    public Button TableItemTwo;
+    public Button TableItemThree;
+    public Button TableItemFour;
+    public Button TableItemFive;
+    public Button TableItemSix;
 
 
     public FlexibleColorPicker fcp;
@@ -79,6 +83,12 @@ public class SpawnableManager : MonoBehaviour
     bool pickerShown = false;
     bool menuShown = false;
     bool objectChosen = false;
+    /*bool isPressed = false;
+    bool left = false;
+    bool right = false;*/
+
+    /*public Button LeftRotate;
+    public Button RightRotate;*/
 
     // Start is called before the first frame update
     void Start()
@@ -91,10 +101,17 @@ public class SpawnableManager : MonoBehaviour
 
         menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
         menuButton.onClick.AddListener(MenuControl);
-        
-        deleteButton.gameObject.SetActive(false);
+        ExitButton.onClick.AddListener(MenuControl);
+        ExitButton.gameObject.SetActive(false);
+
+        //LeftRotate.gameObject.SetActive(false);
+        //RightRotate.gameObject.SetActive(false);
+       // LeftRotate.onClick.AddListener(delegate { TogglePressed(true, 1); });
+        //RightRotate.onClick.AddListener(delegate { TogglePressed(true, 2); });
+
         deleteButton = GameObject.Find("DeleteButton").GetComponent<Button>();
         deleteButton.onClick.AddListener(DeleteObject);
+        deleteButton.gameObject.SetActive(false);
 
         //Getting scrollmenu ready and hidden in the start
         scrollMenu = GameObject.Find("ScrollMenu");
@@ -103,12 +120,12 @@ public class SpawnableManager : MonoBehaviour
         spawnedObject = null; //Nullllllllllllllllllllllllllllllllllll  boiii
         
         //Chair item button assignments
-        ChairItemOne = GameObject.Find("Chair").GetComponent<Button>();
-        ChairItemTwo = GameObject.Find("Rahi").GetComponent<Button>();
+        /*ChairItemOne = GameObject.Find("ChairItemOne").GetComponent<Button>();
+        ChairItemTwo = GameObject.Find("ChairItemTwo").GetComponent<Button>();
         ChairItemThree = GameObject.Find("ChairItemThree").GetComponent<Button>();
         ChairItemFour = GameObject.Find("ChairItemFour").GetComponent<Button>();
         ChairItemFive = GameObject.Find("ChairItemFive").GetComponent<Button>();
-        ChairItemSix = GameObject.Find("ChairItemSix").GetComponent<Button>();
+        ChairItemSix = GameObject.Find("ChairItemSix").GetComponent<Button>();*/
 
         //Chair items ObjectControl number assignments
         ChairItemOne.onClick.AddListener(delegate { ObjectControl(1); });
@@ -119,12 +136,12 @@ public class SpawnableManager : MonoBehaviour
         ChairItemSix.onClick.AddListener(delegate { ObjectControl(6); });
 
         //Couch item button assignments
-        CouchItemOne = GameObject.Find("CouchItemOne").GetComponent<Button>();
+        /* CouchItemOne = GameObject.Find("CouchItemOne").GetComponent<Button>();
         CouchItemTwo = GameObject.Find("CouchItemTwo").GetComponent<Button>();
         CouchItemThree = GameObject.Find("CouchItemThree").GetComponent<Button>();
         CouchItemFour = GameObject.Find("CouchItemFour").GetComponent<Button>();
         CouchItemFive = GameObject.Find("CouchItemFive").GetComponent<Button>();
-        CouchItemSix = GameObject.Find("CouchItemSix").GetComponent<Button>();
+        CouchItemSix = GameObject.Find("CouchItemSix").GetComponent<Button>(); */
 
         //Couch items ObjectControl number assignments
         CouchItemOne.onClick.AddListener(delegate { ObjectControl(7); });
@@ -135,12 +152,12 @@ public class SpawnableManager : MonoBehaviour
         CouchItemSix.onClick.AddListener(delegate { ObjectControl(12); });
 
         //Table item button assignments
-        TableItemOne = GameObject.Find("TableItemOne").GetComponent<Button>();
+        /*TableItemOne = GameObject.Find("TableItemOne").GetComponent<Button>();
         TableItemTwo = GameObject.Find("TableItemTwo").GetComponent<Button>();
         TableItemThree = GameObject.Find("TableItemThree").GetComponent<Button>();
         TableItemFour = GameObject.Find("TableItemFour").GetComponent<Button>();
         TableItemFive = GameObject.Find("TableItemFive").GetComponent<Button>();
-        TableItemSix = GameObject.Find("TableItemSix").GetComponent<Button>();
+        TableItemSix = GameObject.Find("TableItemSix").GetComponent<Button>();*/
 
         //Table items ObjectControl number assignments
         TableItemOne.onClick.AddListener(delegate { ObjectControl(13); });
@@ -156,11 +173,11 @@ public class SpawnableManager : MonoBehaviour
     {
         //Update color picked material color.
         material.color = fcp.color;
-
+       
         if (Input.touchCount == 0)
             return;
 
-        if (!menuShown)
+        if (!menuShown || !pickerShown)
         {
             if (m_RaycastManager.Raycast(Input.GetTouch(0).position, m_Hits))
             {
@@ -174,7 +191,8 @@ public class SpawnableManager : MonoBehaviour
                             SpawnPrefab(m_Hits[0].pose.position);
                             colorButton.gameObject.SetActive(true);
                             deleteButton.gameObject.SetActive(true);
-
+                           // RightRotate.gameObject.SetActive(true);
+                            //LeftRotate.gameObject.SetActive(true);
                         }
                         else if (Input.GetTouch(0).phase == TouchPhase.Moved && spawnedObject != null)
                         {
@@ -185,8 +203,23 @@ public class SpawnableManager : MonoBehaviour
                             spawnedObject = null;
                         }*/ 
                         }
+
+                
                 }
+            
         }
+       /* if (isPressed)
+        {
+            if (left)
+            {
+                spawnedObject.transform.Rotate(Vector3.forward * 20f * Time.deltaTime);
+            }
+
+            if (right)
+            {
+                spawnedObject.transform.Rotate(Vector3.forward * -20f * Time.deltaTime);
+            }
+        }*/
     }
 
         
@@ -207,39 +240,61 @@ public class SpawnableManager : MonoBehaviour
 
     private void ColorControl()
     {
-        if (!pickerShown)
+        if(spawnedObject != null)
         {
-            Debug.Log("nyt pitäis aueta väri ikkuna");
-            colorPicker.SetActive(true);
-            pickerShown = true;
-            colorButton.GetComponentInChildren<Text>().text = "done";
+            if (!pickerShown)
+            {
+                Debug.Log("nyt pitäis aueta väri ikkuna");
+                colorPicker.SetActive(true);
+                colorButton.GetComponent<Image>().sprite = DoneImage;
+                pickerShown = true;
             
-        }
+            }
         else if (pickerShown)
-        {
-            colorPicker.SetActive(false);
-            colorButton.GetComponentInChildren<Text>().text = "COLOR!!";
-            pickerShown = false;
+            {
+                colorPicker.SetActive(false);
+                colorButton.GetComponent<Image>().sprite = EditImage;
+                pickerShown = false;
+            }
+
         }
+        
     }
 
-    /*private void ChairButtonPressed()
+    /*public void TogglePressed(bool value, int x)
     {
-        chairButtonPressed = true;
+        isPressed = value;
+        if (x == 1)
+        {
+            left = value;
+            right = false;
+        }
+            
+        if (x == 2)
+        {
+            right = value;
+            left = false;
+        }
+            
     }*/
 
     private void MenuControl()
     {
+        Debug.Log("Menunappipainettu");
         if(!menuShown)
         {
             menuButton.gameObject.SetActive(false);
+            ExitButton.gameObject.SetActive(true);
             scrollMenu.SetActive(true);
+            //LeftRotate.gameObject.SetActive(false);
+            //RightRotate.gameObject.SetActive(false);
             menuShown = true;
         }
         else if (menuShown)
         {
             scrollMenu.SetActive(false);
             menuButton.gameObject.SetActive(true);
+            ExitButton.gameObject.SetActive(false);
             menuShown = false;
         }
         
@@ -361,6 +416,9 @@ public class SpawnableManager : MonoBehaviour
         {
             Destroy(spawnedObject);
             deleteButton.gameObject.SetActive(false);
+            colorButton.gameObject.SetActive(false);
+           // LeftRotate.gameObject.SetActive(false);
+            //RightRotate.gameObject.SetActive(false);
         }
     }
 }
