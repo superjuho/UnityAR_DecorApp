@@ -177,11 +177,11 @@ public class SpawnableManager : MonoBehaviour
         if (Input.touchCount == 0)
             return;
 
-        if (!menuShown || !pickerShown)
+        if (menuShown == false && pickerShown == false)
         {
             if (m_RaycastManager.Raycast(Input.GetTouch(0).position, m_Hits))
             {
-                if(chosenObject != null && objectChosen)
+                if(chosenObject != null && objectChosen && !pickerShown)
                 {
                         if (Input.GetTouch(0).phase == TouchPhase.Began)
                         {
@@ -191,17 +191,17 @@ public class SpawnableManager : MonoBehaviour
                             SpawnPrefab(m_Hits[0].pose.position);
                             colorButton.gameObject.SetActive(true);
                             deleteButton.gameObject.SetActive(true);
-                           // RightRotate.gameObject.SetActive(true);
+                            //RightRotate.gameObject.SetActive(true);
                             //LeftRotate.gameObject.SetActive(true);
                         }
                         else if (Input.GetTouch(0).phase == TouchPhase.Moved && spawnedObject != null)
                         {
                             spawnedObject.transform.position = m_Hits[0].pose.position;
                         }
-                        /*if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                       /* if (Input.GetTouch(0).phase == TouchPhase.Ended)
                         {
-                            spawnedObject = null;
-                        }*/ 
+                            return;
+                        } */
                         }
 
                 
@@ -244,15 +244,18 @@ public class SpawnableManager : MonoBehaviour
         {
             if (!pickerShown)
             {
+                pickerShown = true;
                 Debug.Log("nyt pitäis aueta väri ikkuna");
                 colorPicker.SetActive(true);
+                deleteButton.gameObject.SetActive(false);
                 colorButton.GetComponent<Image>().sprite = DoneImage;
-                pickerShown = true;
+                
             
             }
         else if (pickerShown)
             {
                 colorPicker.SetActive(false);
+                deleteButton.gameObject.SetActive(true);
                 colorButton.GetComponent<Image>().sprite = EditImage;
                 pickerShown = false;
             }
@@ -280,22 +283,27 @@ public class SpawnableManager : MonoBehaviour
 
     private void MenuControl()
     {
-        Debug.Log("Menunappipainettu");
+        //Debug.Log("Menunappipainettu");
         if(!menuShown)
         {
+            menuShown = true;
             menuButton.gameObject.SetActive(false);
+            deleteButton.gameObject.SetActive(false);
             ExitButton.gameObject.SetActive(true);
             scrollMenu.SetActive(true);
             //LeftRotate.gameObject.SetActive(false);
             //RightRotate.gameObject.SetActive(false);
-            menuShown = true;
+            
         }
         else if (menuShown)
         {
+            menuShown = false;
             scrollMenu.SetActive(false);
             menuButton.gameObject.SetActive(true);
             ExitButton.gameObject.SetActive(false);
-            menuShown = false;
+            if (spawnedObject != null)
+                deleteButton.gameObject.SetActive(true);
+            
         }
         
     }
@@ -304,6 +312,7 @@ public class SpawnableManager : MonoBehaviour
     private void ObjectControl(int objectNumber)
     {
         MenuControl();
+        Destroy(spawnedObject);
         int caseNumber = objectNumber;
 
         switch (caseNumber)
@@ -415,9 +424,10 @@ public class SpawnableManager : MonoBehaviour
         if(spawnedObject != null)
         {
             Destroy(spawnedObject);
+            chosenObject = null;
             deleteButton.gameObject.SetActive(false);
             colorButton.gameObject.SetActive(false);
-           // LeftRotate.gameObject.SetActive(false);
+            //LeftRotate.gameObject.SetActive(false);
             //RightRotate.gameObject.SetActive(false);
         }
     }

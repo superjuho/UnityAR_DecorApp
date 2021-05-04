@@ -415,23 +415,23 @@ MonoBehaviour:
   TableItemSix: {fileID: 1775792448}
   fcp: {fileID: 1489512081}
   material: {fileID: 2100000, guid: da2630d66eaad3e41bd193044cc805d7, type: 2}
-  spawnableChair: {fileID: 7171409045015107817, guid: 59bf0e53cbb1b3e409d20ddf4d1bcb46, type: 3}
+  spawnableChair: {fileID: 6985495650983163148, guid: 59bf0e53cbb1b3e409d20ddf4d1bcb46, type: 3}
   chairItemThree: {fileID: 8582453331682466815, guid: 609e92a0fc30d24418b4f34a43733c6f, type: 3}
   chairItemFour: {fileID: 2684752615667311206, guid: 0fd912fe263f97b4c950838d725ffc04, type: 3}
-  chairItemFive: {fileID: 5871846707618436860, guid: 3aace10888901274687049f97abcf4b0, type: 3}
+  chairItemFive: {fileID: 8084406730188737537, guid: 00e78d37ac9974b4e896226a171f2210, type: 3}
   chairItemSix: {fileID: 4900066511354166119, guid: 8d1bf460b6f31614aaf4ea633c2cdd66, type: 3}
   couchItemOne: {fileID: 5470603937041911017, guid: 10c49a4ceb54da84bb2f9ef377990622, type: 3}
   couchItemTwo: {fileID: 6096321279557476505, guid: cefd9b4388f4a2b4c9b07fda09d49d0e, type: 3}
   couchItemThree: {fileID: 2080047930182551548, guid: 9fbd10951be75b948ab9818f145e6c4c, type: 3}
-  couchItemFour: {fileID: 8416487830258910567, guid: 271018044f856f1458993d801f21d88e, type: 3}
-  couchItemFive: {fileID: 2093189198678098585, guid: b48e11e89e6ba0e4481f37bde625cda6, type: 3}
+  couchItemFour: {fileID: 3823556101762878493, guid: a2f57b358c68b4d4ab87fac31f2408c6, type: 3}
+  couchItemFive: {fileID: 9188313397438127843, guid: 14f74c444f46ffa49b0364ce6444bb18, type: 3}
   couchItemSix: {fileID: 4277881070847666576, guid: 53d8d19766dc66547be9148161f46feb, type: 3}
   tableItemOne: {fileID: 8093803142229428936, guid: 3a05fc284b08e6840905995e9cf8204f, type: 3}
   tableItemTwo: {fileID: 874765140412290767, guid: 78f9921943c5e6d40b5b18d6291ebc27, type: 3}
-  tableItemThree: {fileID: 4943500968908953657, guid: 79c7e7e5bb904ef4496c11d9fa614660, type: 3}
+  tableItemThree: {fileID: 903676150435590511, guid: 8cb72019d735e4c43b1dcd84604538a8, type: 3}
   tableItemFour: {fileID: 7106297041607971817, guid: e064be99354d94d47956efe67bc8aa8f, type: 3}
   tableItemFive: {fileID: 1786874445258872371, guid: 275380296cefd364297c479e29afd407, type: 3}
-  tableItemSix: {fileID: 7341756199330022914, guid: 18e094ac929cb464e85f769e53b021c0, type: 3}
+  tableItemSix: {fileID: 6989593240755470316, guid: ff7d1d5f22e55d944b6c66378178974e, type: 3}
 --- !u!4 &223974228
 Transform:
   m_ObjectHideFlags: 0
@@ -4293,7 +4293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FocusMode: -1
   m_LightEstimationMode: -1
-  m_AutoFocus: 1
+  m_AutoFocus: 0
   m_LightEstimation: 0
   m_FacingDirection: 1
 --- !u!114 &1114040585
@@ -6664,7 +6664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
